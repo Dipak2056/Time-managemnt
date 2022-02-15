@@ -12,9 +12,10 @@ const handleOnSubmit = (e) => {
     const hr = +frmData.get('hr');
     
     const ttlBadHrs = totalBadHour();
-    const total1 = totalTaskHour();
     if(hr < 1){return alert('woohooo! you cannot travel time.')};
-    if( ttlBadHrs+total1  > hrPerweek ){
+    if( hr > (hrPerweek-totalTaskHour()) 
+    //  ttlBadHrs + total1  > hrPerweek
+     ){
         return alert('cannot add')
     }
     const obj = {
@@ -36,7 +37,7 @@ const display = () => {
             ${item.task}
         </td>
         <td> 
-        ${item.hr}
+        ${item.hr} hr
         </td>
         <td class="text-end">
                         <div class="btn btn-danger" title="Delete" onclick="deleteItem(${i})">
@@ -61,10 +62,10 @@ const displayBadList = () => {
             ${item.task}
         </td>
         <td> 
-        ${item.hr}
+        ${item.hr} hr
         </td>
         <td class="text-end">
-        <div class="btn btn-warning " title="Mark" onclick="markAsNotToDo(${i})">
+        <div class="btn btn-warning " title="Mark" onclick="markAsToDo(${i})">
         <i class="fa-solid fa-circle-chevron-left"></i>
         </div>
                         <div class="btn btn-danger" title="Delete" onclick="deleteBadItem(${i})">
@@ -115,6 +116,14 @@ const totalBadHour = () =>{
         badList.push(itm[0]);
         displayBadList();
         totalBadHour();
+    }
+    const markAsToDo = (i) =>{
+        const itm = badList.splice(i,1);
+        displayBadList();
+
+        taskList.push(itm[0]);
+        display();
+        totalTaskHour();
     }
 //loop the array and diplay under the tasks list
 // calculate total hours 
