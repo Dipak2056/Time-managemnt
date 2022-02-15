@@ -13,6 +13,7 @@ const handleOnSubmit = (e) => {
     
     const ttlBadHrs = totalBadHour();
     if(hr < 1){return alert('woohooo! you cannot travel time.')};
+    
     if( hr > (hrPerweek-totalTaskHour()) 
     //  ttlBadHrs + total1  > hrPerweek
      ){
@@ -125,11 +126,3 @@ const totalBadHour = () =>{
         display();
         totalTaskHour();
     }
-//loop the array and diplay under the tasks list
-// calculate total hours 
-//create another list bad list
-//count the total hours from the bad list
-
-//delete the task and re calculate the hours
-//take tasks from list to bad list vs.
-
